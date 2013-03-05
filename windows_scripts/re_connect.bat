@@ -1,0 +1,9 @@
+@echo off
+echo Now Stopping the net...
+netsh wlan stop hostednetwork
+ping -n 3 127.0.0.1>nul
+echo Done...
+echo Now Setup the net again...
+netsh wlan start hostednetwork
+echo Reset done..
+pause

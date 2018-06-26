@@ -1,0 +1,19 @@
+#!/bin/bash
+
+KEY_STORE_PATH=/home/mickey/re_tools/apk_sign/keystore
+KEY_STORE_PWD="mickey"
+TARGET_KEY="myKeyStore"
+
+if [ "$#" -ne 1 ]; then
+    echo "Usage: $0 APK_TO_SIGN" >&2
+    exit 1
+fi
+if ! [ -e "$1" ]; then
+    echo "$1 not found" >&2
+    exit 1
+fi
+
+jarsigner -verbose -keystore $KEY_STORE_PATH -storepass $KEY_STORE_PWD -keypass $KEY_STORE_PWD $1 $TARGET_KEY
+
+# verify
+# jarsigner -keystore KEY_STORE_PATH -verify -verbose -certs $1

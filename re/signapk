@@ -1,8 +1,11 @@
 #!/bin/bash
 
-KEY_STORE_PATH=/home/mickey/re_tools/apk_sign/keystore
-KEY_STORE_PWD="mickey"
-TARGET_KEY="myKeyStore"
+# To be filled...
+MY_KEY_PWD=""
+KEY_STORE_PATH=""
+
+KEY_STORE_PWD=$MY_KEY_PWD
+MY_DEBUG_KEY_NAME="myKeyStore"
 
 if [ "$#" -ne 1 ]; then
     echo "Usage: $0 APK_TO_SIGN" >&2
@@ -13,7 +16,10 @@ if ! [ -e "$1" ]; then
     exit 1
 fi
 
-jarsigner -verbose -keystore $KEY_STORE_PATH -storepass $KEY_STORE_PWD -keypass $KEY_STORE_PWD $1 $TARGET_KEY
+# Generate keystore
+# keytool --genkey --v --keystore $KEY_STORE_PATH --alias $MY_DEBUG_KEY_NAME --storepass $KEY_STORE_PWD --keypass $MY_KEY_PWD --keyalg RSA --validity 14000
+
+jarsigner -verbose -keystore $KEY_STORE_PATH -storepass $KEY_STORE_PWD -keypass $KEY_STORE_PWD $1 $MY_DEBUG_KEY_NAME
 
 # verify
 # jarsigner -keystore KEY_STORE_PATH -verify -verbose -certs $1

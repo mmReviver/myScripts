@@ -16,6 +16,11 @@ jupyter-lab --generate-config
 # Remember to change the listen port, ip_addr, and the document root for jupyter-lab
 vim ~/.jupyter/jupyter_notebook_config #TBD
 
+# Actually now angr has been ported to support python3
+# Therefore could directly install in python3 environment
+pip install --force-reinstall angr # Use force reinstall to force upgrade some dependency packages
+
+# However, I still think the angr in python2 is more stable
 # Create python2 kernel
 conda create -n py27 python=2.7 ipykernel
 source activate py27
